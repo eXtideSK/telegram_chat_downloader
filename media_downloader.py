@@ -91,6 +91,7 @@ def _is_exist(file_path: str) -> bool:
 
 
 async def _get_media_meta(
+    media_id: str,
     media_obj: Union[Audio, Document, Photo, Video, VideoNote, Voice],
     _type: str,
 ) -> Tuple[str, Optional[str]]:
@@ -112,24 +113,22 @@ async def _get_media_meta(
         # pylint: disable = C0301
         file_format: Optional[str] = media_obj.mime_type.split("/")[-1]  # type: ignore
     else:
-        file_format = None
+        file_format = "jpg"
 
     if _type in ["voice", "video_note"]:
         # pylint: disable = C0209
         file_format = media_obj.mime_type.split("/")[-1]  # type: ignore
-        file_name: str = os.path.join(
-            THIS_DIR,
+        
+    file_name: str = os.path.join(
+        THIS_DIR,
+        "AllObjects",
+        "{}_{}.{}".format(
+            media_id,
             _type,
-            "{}_{}.{}".format(
-                _type,
-                media_obj.date.isoformat(),  # type: ignore
-                file_format,
-            ),
-        )
-    else:
-        file_name = os.path.join(
-            THIS_DIR, _type, getattr(media_obj, "file_name", None) or ""
-        )
+            file_format,
+        ),
+    )
+    
     return file_name, file_format
 
 
@@ -172,13 +171,23 @@ async def download_media(
     """
     for retry in range(3):
         try:
+            if message.text is not None:
+                txt_file = open(os.path.join(THIS_DIR, "AllObjects", "{}.{}".format(message.id, "txt",)), 'w+', encoding="utf-8")
+                txt_file.write(message.text.html)
+                txt_file.close()
+                logger.info("File Written: %s", txt_file)
+            if message.caption is not None:
+                txt_file = open(os.path.join(THIS_DIR, "AllObjects", "{}.{}".format(message.id, "txt",)), 'w+', encoding="utf-8")
+                txt_file.write(message.caption.html)
+                txt_file.close()
+                logger.info("File Written: %s", txt_file)
             if message.media is None:
                 return message.id
             for _type in media_types:
                 _media = getattr(message, _type, None)
                 if _media is None:
                     continue
-                file_name, file_format = await _get_media_meta(_media, _type)
+                file_name, file_format = await _get_media_meta(message.id, _media, _type)
                 if _can_download(_type, file_formats, file_format):
                     if _is_exist(file_name):
                         file_name = get_next_name(file_name)
