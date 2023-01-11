@@ -11,3 +11,6 @@ However I was missing some important features for me:
 Actually I am not a developer, my last code was written about 10 years ago during my studies. So please don't blame me for bad coding :P
 
 For more descriptions and comments please visit the original project: Dineshkarthik/telegram_media_downloader
+
+### TODO
+Add Gif Support
