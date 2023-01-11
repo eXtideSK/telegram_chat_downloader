@@ -1,35 +1,17 @@
 
-<h1 align="center">Telegram Media Downloader</h1>
+<h1 align="center">Telegram Chat Downloader</h1>
 
-<p align="center">
-<a href="https://github.com/Dineshkarthik/telegram_media_downloader/actions"><img alt="Unittest" src="https://github.com/Dineshkarthik/telegram_media_downloader/workflows/Unittest/badge.svg"></a>
-<a href="https://codecov.io/gh/Dineshkarthik/telegram_media_downloader"><img alt="Coverage Status" src="https://codecov.io/gh/Dineshkarthik/telegram_media_downloader/branch/master/graph/badge.svg"></a>
-<a href="https://github.com/Dineshkarthik/telegram_media_downloader/blob/master/LICENSE"><img alt="License: MIT" src="https://black.readthedocs.io/en/stable/_static/license.svg"></a>
-<a href="https://github.com/python/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
-</p>
+### Why this fork:
+I enjoeyd the original functionality of Dineshkarthik/telegram_media_downloader
+However I was missing some important features for me:
+- Accessible chronology of messages
+- Download everything in a single folder
+- Download also message's text and caption
 
-<h3 align="center">
-  <a href="https://github.com/Dineshkarthik/telegram_media_downloader/discussions/categories/ideas">Feature request</a>
-  <span> · </span>
-  <a href="https://github.com/Dineshkarthik/telegram_media_downloader/issues">Report a bug</a>
-  <span> · </span>
-  Support: <a href="https://github.com/Dineshkarthik/telegram_media_downloader/discussions">Discussions</a>
-  <span> & </span>
-  <a href="https://t.me/tgmdnews">Telegram Community</a>
-</h3>
+Actually I am not a developer, my last code was written about 10 years ago during my studies. So please don't blame me for bad coding :P
 
-### Overview:
-Download all media files from a conversation or a channel that you are a part of from telegram.
-A meta of last read/downloaded message is stored in the config file so that in such a way it won't download the same media file again.
+For more descriptions and comments please visit the original project: Dineshkarthik/telegram_media_downloader
 
-### Support:
-| Category | Support |
-|--|--|
-|Language | `Python 3.7 ` and above|
-|Download media types|  audio, document, photo, video, video_note, voice|
-
-### ToDo:
-- Add support for multiple channels/chats.
 
 ### Installation
 
